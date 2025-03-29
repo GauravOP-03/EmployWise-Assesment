@@ -38,15 +38,31 @@ export default function Login() {
         setError(null);
         navigate("/users");
         setLoading(false)
-        toast("Logged in successfully");
+        const toastId = toast("Logged in successfully", {
+          action: {
+            label: "Dismiss",
+            onClick: () => toast.dismiss(toastId),
+          },
+        })
       })
-      .catch((e) => {
-        console.error(e);
-        setError("Invalid credentials");
-        toast("Invalid credentials")
+      .catch((error) => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+          setError(error.response.data.error); // Display the error message
+          const toastId = toast.error(error.response.data.error, {
+            action: {
+              label: "Dismiss",
+              onClick: () => toast.dismiss(toastId),
+            },
+          });
+        } else {
+          console.error("Unexpected Error:", error.message);
+          setError(error.message);
+          toast(error.message);
+        }
         setLoading(false)
-        console.log(error);
       })
+
 
   };
 

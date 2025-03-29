@@ -41,6 +41,7 @@ const UsersList = () => {
         },
       });
 
+
       return;
     }
 
@@ -73,7 +74,13 @@ const UsersList = () => {
     localStorage.removeItem("deletedUsers");
     localStorage.removeItem("editedUsers");
     navigate("/login");
-    toast.success("Logout Successfully");
+
+    const toastId = toast.success("Logout Successfully", {
+      action: {
+        label: "Dismiss",
+        onClick: () => toast.dismiss(toastId),
+      },
+    });
   };
 
   // Filter and sort users

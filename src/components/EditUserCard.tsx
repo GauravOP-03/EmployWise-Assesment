@@ -24,7 +24,12 @@ const EditUserCard = () => {
     const foundUser = users.find((u) => u.id === Number(id));
     if (!foundUser) {
       navigate("/users");
-      toast.error("User not found!");
+      const toastId = toast.error("User not found!", {
+        action: {
+          label: "Dismiss",
+          onClick: () => toast.dismiss(toastId),
+        },
+      });
     } else {
       setUser({ ...foundUser });
     }
@@ -59,11 +64,22 @@ const EditUserCard = () => {
         [Number(id)]: user,
       }));
 
-      toast.success("User updated successfully!");
       navigate("/users");
+      const toastId = toast.success("User updated successfully!", {
+        action: {
+          label: "Dismiss",
+          onClick: () => toast.dismiss(toastId),
+        },
+      });
+
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update user");
+      const toastId = toast.error("Failed to update user", {
+        action: {
+          label: "Dismiss",
+          onClick: () => toast.dismiss(toastId),
+        },
+      });
     } finally {
       setLoading(false);
     }

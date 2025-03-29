@@ -1,6 +1,4 @@
 import { useState } from "react";
-// import EditUserModal from "./EditUserModal";
-// import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -28,10 +26,21 @@ const UserCard = ({ user }: { user: User }) => {
       setDeletedUsers((prevDeleted) => [...prevDeleted, user.id]);
 
       setLoadingDeletedUser(false);
-      toast("User deleted");
+
+      const toastId = toast.success("User deleted", {
+        action: {
+          label: "Dismiss",
+          onClick: () => toast.dismiss(toastId),
+        },
+      });
     } catch (e) {
       console.error(e);
-      toast("Error deleting user");
+      const toastId = toast.error("Error deleting user", {
+        action: {
+          label: "Dismiss",
+          onClick: () => toast.dismiss(toastId),
+        },
+      });
 
       setLoadingDeletedUser(false);
     }
