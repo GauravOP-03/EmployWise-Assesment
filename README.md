@@ -1,3 +1,4 @@
+# Reqres User Manager
 A React application that integrates with the Reqres API to perform basic user management functions, including authentication, user listing, editing, and deletion.
 
 ## Features
@@ -75,4 +76,4 @@ npm run dev
 ![User Dashboard](./public/dashboard.png)
 
 ### Edit Page
-![Edit Page](./public/mobileedit.png)
+![Edit Page](./public/Mobile.png)
