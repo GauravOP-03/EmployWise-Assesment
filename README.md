@@ -69,11 +69,11 @@ npm run dev
 ## Screenshots
 
 
-### Login Page
-![Login Page](./public/image.png)
+### Login Page  
+<img src="./public/image.png" alt="Login Page" width="400px">
 
-### User Dashboard
-![User Dashboard](./public/dashboard.png)
+### User Dashboard  
+<img src="./public/dashboard.png" alt="User Dashboard" width="400px">
 
-### Edit Page
-![Edit Page](./public/Mobile.jpg)
+### Edit Page  
+<img src="./public/Mobile.jpg" alt="Edit Page" width="400px">
