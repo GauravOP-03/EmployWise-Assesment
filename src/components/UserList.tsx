@@ -17,12 +17,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { User } from "@/types";
-import { fetchUser } from "@/api";
+import { fetchUser } from "@/services/api";
 
 const UsersList = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("id");
+
+  // context api
   const { users, setUsers, setTotalPages, page, deletedUsers, editedUsers } =
     useUser();
   const [loading, setLoading] = useState(true);
@@ -52,11 +54,12 @@ const UsersList = () => {
           (user: User) => !deletedUsers.includes(user.id)
         );
 
-        // Apply edited users from state
+        // fetching edited users from context editedUsers
         fetchedUsers = fetchedUsers.map((user: User) =>
           editedUsers[user.id] ? { ...user, ...editedUsers[user.id] } : user
         );
 
+        // setting fetched user to main useState variable
         setUsers(fetchedUsers);
         setTotalPages(res.data.total_pages);
       })
@@ -64,6 +67,7 @@ const UsersList = () => {
       .finally(() => setLoading(false));
   }, [page]);
 
+  // logout function
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("deletedUsers");

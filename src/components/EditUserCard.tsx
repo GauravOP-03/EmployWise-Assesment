@@ -5,11 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/context/UserContext";
 import { toast } from "sonner";
-import { updateUser } from "@/api";
+import { updateUser } from "@/services/api";
 
 const EditUserCard = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  // context api
   const { editedUsers, setEditedUsers, users, setUsers } = useUser();
   const [loading, setLoading] = useState(false);
 
@@ -18,6 +19,7 @@ const EditUserCard = () => {
     return existingUser ? { ...existingUser } : editedUsers[Number(id)] || null;
   });
 
+  // find user through params
   useEffect(() => {
     const foundUser = users.find((u) => u.id === Number(id));
     if (!foundUser) {
@@ -30,6 +32,7 @@ const EditUserCard = () => {
 
   if (!user) return null;
 
+  // store the input while changing the edit
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser((prevUser) => ({
       ...prevUser!,
@@ -37,16 +40,20 @@ const EditUserCard = () => {
     }));
   };
 
+  // submit edit 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
+      // changing data in api
       await updateUser(id, user);
 
+      // changing locally
       setUsers((prevUsers) =>
         prevUsers.map((u) => (u.id === Number(id) ? user : u))
       );
 
+      // changing in context api
       setEditedUsers((prevEdited) => ({
         ...prevEdited,
         [Number(id)]: user,

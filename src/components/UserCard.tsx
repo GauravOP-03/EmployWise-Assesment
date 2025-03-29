@@ -8,18 +8,23 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "@/context/UserContext";
 import { User } from "@/types";
-import { deleteUser } from "@/api";
+import { deleteUser } from "@/services/api";
 const UserCard = ({ user }: { user: User }) => {
   const [loadingDeletedUser, setLoadingDeletedUser] = useState(false);
   const navigate = useNavigate();
 
+  // context api
   const { setUsers, setDeletedUsers } = useUser();
 
+  // delete function 
   const handleDelete = async () => {
     try {
       setLoadingDeletedUser(true);
+      // delete request to api
       await deleteUser(user.id);
+      // changing locally
       setUsers((prevUsers) => prevUsers.filter((u) => u.id !== user.id));
+      // adding delete values to context useState
       setDeletedUsers((prevDeleted) => [...prevDeleted, user.id]);
 
       setLoadingDeletedUser(false);
@@ -32,6 +37,7 @@ const UserCard = ({ user }: { user: User }) => {
     }
   };
 
+  // edit button function
   function onEditClick() {
     navigate(`./edit/${user.id}`);
   }
@@ -61,7 +67,6 @@ const UserCard = ({ user }: { user: User }) => {
           </Button>
         </div>
       </CardContent>
-      {/* {isEditing && <EditUserModal user={user} setUsers={setUsers} close={() => setIsEditing(false)} />} */}
     </Card>
   );
 };

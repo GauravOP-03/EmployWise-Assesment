@@ -2,12 +2,15 @@ import { useUser } from "@/context/UserContext";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 export default function Pagination() {
+  // context api
   const { totalPages, page, setPage } = useUser();
 
+  // if no page exist 
   if (!totalPages || totalPages < 1) return null;
 
   return (
     <div className="flex items-center justify-center gap-4 p-4 bg-white shadow-md rounded-lg sticky bottom-5">
+      {/* Previous button */}
       <button
         className="p-2 rounded-lg border border-gray-300 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={page <= 1}
@@ -21,6 +24,7 @@ export default function Pagination() {
         Page {page} of {totalPages}
       </span>
 
+      {/* next button */}
       <button
         className="p-2 rounded-lg border border-gray-300 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={page >= totalPages}

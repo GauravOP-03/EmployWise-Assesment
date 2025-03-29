@@ -6,15 +6,9 @@ import {
   useEffect,
 } from "react";
 
-// Define the type for the user object (adjust according to your actual user structure)
-interface User {
-  first_name: string;
-  last_name: string;
-  id: number;
-  email: string;
-  avatar: string;
-}
+import { User } from "@/types"
 
+// user context type
 interface UserContextType {
   users: User[];
   setUsers: React.Dispatch<React.SetStateAction<User[]>>;
@@ -37,6 +31,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [deletedUsers, setDeletedUsers] = useState<number[]>([]);
   const [editedUsers, setEditedUsers] = useState<Record<number, User>>({});
+
+  // fetching from localstorage when component mount
   useEffect(() => {
     const storedDeletedUsers = JSON.parse(
       localStorage.getItem("deletedUsers") || "[]"
@@ -48,6 +44,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setDeletedUsers(storedDeletedUsers);
   }, []);
 
+  // setting data in local storage
   useEffect(() => {
     localStorage.setItem("deletedUsers", JSON.stringify(deletedUsers));
   }, [deletedUsers]);
@@ -56,6 +53,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("editedUsers", JSON.stringify(editedUsers));
   }, [editedUsers]);
   return (
+    // creating context provider
     <UserContext.Provider
       value={{
         users,

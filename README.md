@@ -70,10 +70,10 @@ npm run dev
 
 
 ### Login Page  
-<img src="./public/image.png" alt="Login Page" width="400px">
+<img src="./public/image.png" alt="Login Page" width="500px">
 
 ### User Dashboard  
-<img src="./public/dashboard.png" alt="User Dashboard" width="400px">
+<img src="./public/dashboard.png" alt="User Dashboard" width="500px">
 
 ### Edit Page  
 <img src="./public/Mobile.jpg" alt="Edit Page" width="400px">

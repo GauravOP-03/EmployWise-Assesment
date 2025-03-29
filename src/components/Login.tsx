@@ -10,12 +10,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [error, setError] = useState<string | null>(null);
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // to store form data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
+  // controlled input 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -23,6 +25,7 @@ export default function Login() {
     });
   };
 
+  // submit function 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true)
@@ -34,13 +37,17 @@ export default function Login() {
         // console.log(res);
         setError(null);
         navigate("/users");
+        setLoading(false)
         toast("Logged in successfully");
       })
       .catch((e) => {
         console.error(e);
         setError("Invalid credentials");
+        toast("Invalid credentials")
+        setLoading(false)
         console.log(error);
-      });
+      })
+
   };
 
   return (

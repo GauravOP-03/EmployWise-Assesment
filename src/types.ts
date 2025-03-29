@@ -1,3 +1,4 @@
+// Types of user that comes from api
 export interface User {
   id: number;
   first_name: string;
