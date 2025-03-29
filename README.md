@@ -1,54 +1,78 @@
-# React + TypeScript + Vite
+A React application that integrates with the Reqres API to perform basic user management functions, including authentication, user listing, editing, and deletion.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+### Level 1: Authentication
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Users can log in with the following credentials:
+  - **Email:** eve.holt@reqres.in
+  - **Password:** cityslicka
+- On successful login, a token is stored in **localStorage**, and the user is redirected to the user list.
 
-## Expanding the ESLint configuration
+### Level 2: User List
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Fetches users from **GET /api/users?page=1** endpoint.
+- Displays users in a structured format with **name, email, and avatar**.
+- Implements **pagination** for easy navigation.
+- Allows **client-side search and sorting**.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Level 3: Edit & Delete Users
+
+- **Edit**: Users can update their first name, last name, and email using **PUT /api/users/{id}**.
+- **Delete**: Users can be removed using **DELETE /api/users/{id}**, and the list updates instantly.
+
+## Tech Stack
+
+```bash
+- React (Frontend framework)
+- Context API (Global state management)
+- Axios (For API requests)
+- ShadCN UI (For styling)
+- React Router (For navigation)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone the Repository
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+git clone https://github.com/GauravOP-03/EmployWise-Assignment.git
+cd EmployWise-Assignment
+
+2. Install Dependencies
+
+npm install
+
+3. Run the Application
+
+npm run dev
+
+## Usage
+
+- Navigate to http://localhost:5173
+- Log in using the provided credentials.
+- Manage users from the dashboard (search, edit, delete, and paginate).
+
+## Api Endpoint Used
+
+- POST /api/login → Authentication
+- GET /api/users?page=1 → Fetch users
+- PUT /api/users/{id} → Update user
+- DELETE /api/users/{id} → Delete user
+
+## Bonus Features
+
+- Client-side filtering & sorting
+- Persistent login using localStorage
+- Deployed version available at: [EmployWise - Live App](https://employwise-assesment.onrender.com/login)
+
+## Screenshots
+
+
+### Login Page
+![Login Page](./public/image.png)
+
+### User Dashboard
+![User Dashboard](./public/dashboard.png)
+
+### Edit Page
+![Edit Page](./public/mobileedit.png)

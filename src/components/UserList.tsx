@@ -101,7 +101,7 @@ const UsersList = () => {
           placeholder="Search users..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full sm:w-72"
+          className="w-full sm:w-72 "
         />
         <Select value={sortOption} onValueChange={setSortOption}>
           <SelectTrigger className="w-40 border border-gray-300 bg-white shadow-sm rounded-lg px-4 py-2 text-sm">
