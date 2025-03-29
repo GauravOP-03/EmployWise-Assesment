@@ -65,7 +65,7 @@ npm run dev
 
 - Client-side filtering & sorting
 - Persistent login using localStorage
-- Deployed version available at: [EmployWise - Live App](https://employwise-assesment.onrender.com/login)
+- Deployed version available at: [EmployWise - Live App](https://employwise-assignment-lb4m.onrender.com/login)
 
 ## Screenshots
 
