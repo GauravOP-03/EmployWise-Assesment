@@ -76,4 +76,4 @@ npm run dev
 ![User Dashboard](./public/dashboard.png)
 
 ### Edit Page
-![Edit Page](./public/Mobile.png)
+![Edit Page](./public/Mobile.jpg)
